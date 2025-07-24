@@ -1,0 +1,119 @@
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["Gopkg.toml", "go.mod", ".git"]
+auto-format = true
+comment-token = "//"
+language-servers = ["gopls"]
+indent = { tab-width = 4, unit = "\t" }
+formatter = { command = "goimports" }
+
+[language-server.gopls]
+command = "gopls"
+args = ["serve"]
+
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
+[language-server.gopls.config]
+staticcheck = true
+gofumpt = true
+local = ""
+usePlaceholders = true
+completeUnimported = true
+directoryFilters = ["-node_modules"]
+semanticTokens = true
+[language-server.gopls.config.codelenses]
+gc_details = false
+generate = true
+regenerate_cgo = true
+run_govulncheck = true
+test = true
+tidy = true
+upgrade_dependency = true
+vendor = true
+
+[language-server.gopls.config.analyses]
+fieldalignment = true
+nilness = true
+shadow = true
+unusedparams = true
+unusedwrite = true
+useany = true
+
+# Go module files
+[[language]]
+name = "gomod"
+scope = "source.gomod"
+injection-regex = "gomod"
+file-types = ["go.mod"]
+auto-format = true
+comment-token = "//"
+language-servers = ["gopls"]
+roots = ["go.mod"]
+
+# Go workspace files
+[[language]]
+name = "gowork"
+scope = "source.gowork"
+injection-regex = "gowork"
+file-types = ["go.work"]
+auto-format = true
+comment-token = "//"
+language-servers = ["gopls"]
+roots = ["go.work"]
+
+# Go templates
+[[language]]
+name = "gotmpl"
+scope = "source.gotmpl"
+injection-regex = "gotmpl"
+file-types = ["gotmpl", "go.tmpl"]
+comment-token = "//"
+language-servers = ["gopls"]
+roots = ["go.mod"]
+
+# Optional: Add support for Go test files with specific configuration
+[[language]]
+name = "go"
+scope = "source.go"
+file-types = ["go"]
+shebangs = []
+roots = ["go.mod", "go.work", "Gopkg.toml", ".git"]
+comment-token = "//"
+language-servers = ["gopls"]
+indent = { tab-width = 4, unit = "\t" }
+auto-format = true
+formatter = { command = "goimports" }
+
+# JSON for go.mod and other config files
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+auto-format = true
+
+# YAML for docker-compose, GitHub Actions, etc.
+[[language]]
+name = "yaml"
+language-servers = ["yaml-language-server"]
+auto-format = true
+
+# Dockerfile
+[[language]]
+name = "dockerfile"
+language-servers = ["docker-langserver"]
+auto-format = true
+
+# Markdown for documentation
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+auto-format = true
